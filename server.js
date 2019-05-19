@@ -20,7 +20,7 @@ client.on('message', msg => {
 })
 
 function processCommand(msg) {
-  let fullCommand = receivedMessage.content.substr(1) // Remove the leading exclamation mark
+  let fullCommand = msg.content.substr(1) // Remove the leading exclamation mark
   let splitCommand = fullCommand.split(' ') // Split the message up in to pieces for each space
   let primaryCommand = splitCommand[0] // The first word directly after the exclamation is the command
   let arguments = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
