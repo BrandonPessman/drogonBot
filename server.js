@@ -8,6 +8,14 @@ client.on('ready', () => {
   client.user.setActivity('with Fire | !help')
 })
 
+client.on('guildMemberAdd', member => {
+  var role = member.guild.roles.find('name', 'Member')
+  member.addRole(role)
+  member.guild.channels
+    .get('579572740005036032')
+    .send('**' + member.user.username + '**, has joined the server!')
+})
+
 client.on('message', msg => {
   if (msg.author == client.user) {
     // Prevent bot from responding to its own messages
