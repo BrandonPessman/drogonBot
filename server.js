@@ -43,27 +43,36 @@ function processCommand(msg) {
   }
 }
 
-function helpCommand(arguments, msg) {
-  msg.channel.send(
-    "Looks like your are looking for some help. I don't have anything for you yet!"
-  )
-}
-
-function dracarysCommand(arguments, msg) {
-  const embed = new Discord.RichEmbed()
-    .setTitle('**Drogon Command**')
+function embedBuilder(command, description, picture) {
+  return new Discord.RichEmbed()
     .setColor(0x00ae86)
-    .setFooter('DrogonBot Made By Brandon Pessman', '')
-    .setImage(
-      'https://www.geek.com/wp-content/uploads/2018/10/Game-of-Thrones-Conquest-Adult-Dragon-Talent-625x352.jpg'
-    )
+    .setFooter('DrogonBot | Made by Brandon Pessman', '')
+    .setImage(picture)
     .setThumbnail(client.user.avatarURL)
     .setTimestamp()
     .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
-    .addField(
-      'Drogon Spews His Fire At You!',
-      'He Can Be A Bad Dragon Sometimes...'
-    )
+    .addField('**Command:** !' + command, description)
+}
+
+function helpCommand(arguments, msg) {
+  const embed = new Discord.RichEmbed()
+    .setColor(0x00ae86)
+    .setFooter('DrogonBot | Made by Brandon Pessman', '')
+    .setThumbnail(client.user.avatarURL)
+    .setTimestamp()
+    .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
+    .addField('**Command:** !help', 'Here is a list of helpful commands.')
+    .addField('Random Commands', '!dracarys - Use with caution.\n')
+
+  msg.channel.send({ embed })
+}
+
+function dracarysCommand(arguments, msg) {
+  const embed = embedBuilder(
+    'dracarys',
+    'Drogon spews his fire at you! He only takes commands from the Mother of Dragons...',
+    'http://clipart-library.com/images/zTX5njBGc.jpg'
+  )
 
   msg.channel.send({ embed })
 }
