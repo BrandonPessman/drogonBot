@@ -50,12 +50,22 @@ function helpCommand(arguments, msg) {
 }
 
 function dracarysCommand(arguments, msg) {
-  msg.channel.send({
-    embed: {
-      color: 3447003,
-      description: 'Drogon Spews His Fire At You!',
-    },
-  })
+  const embed = new Discord.RichEmbed()
+    .setTitle('**Drogon Command**')
+    .setColor(0x00ae86)
+    .setFooter('DrogonBot Made By Brandon Pessman', '')
+    .setImage(
+      'https://www.geek.com/wp-content/uploads/2018/10/Game-of-Thrones-Conquest-Adult-Dragon-Talent-625x352.jpg'
+    )
+    .setThumbnail(client.user.avatarURL)
+    .setTimestamp()
+    .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
+    .addField(
+      'Drogon Spews His Fire At You!',
+      'He Can Be A Bad Dragon Sometimes...'
+    )
+
+  mesg.channel.send({ embed })
 }
 
 client.login(process.env.BOT_TOKEN)
