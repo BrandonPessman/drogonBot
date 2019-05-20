@@ -53,22 +53,7 @@ function dracarysCommand(arguments, msg) {
   msg.channel.send({
     embed: {
       color: 3447003,
-      author: {
-        name: client.user.username,
-        icon_url: client.user.avatarURL,
-      },
-      fields: [
-        {
-          name: 'Drogon Spews His Flames!',
-          image:
-            'http://jeremyvarner.com/blog/wp-content/uploads/2015/06/Fire-breathing-Dragon-672x372.jpg',
-        },
-      ],
-      timestamp: new Date(),
-      footer: {
-        icon_url: client.user.avatarURL,
-        text: '© Example',
-      },
+      description: 'Drogon Spews His Fire At You!',
     },
   })
 }
