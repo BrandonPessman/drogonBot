@@ -65,7 +65,7 @@ function dracarysCommand(arguments, msg) {
       'He Can Be A Bad Dragon Sometimes...'
     )
 
-  mesg.channel.send({ embed })
+  msg.channel.send({ embed })
 }
 
 client.login(process.env.BOT_TOKEN)
