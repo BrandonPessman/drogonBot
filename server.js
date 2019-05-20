@@ -38,6 +38,8 @@ function processCommand(msg) {
 
   if (primaryCommand == 'help') {
     helpCommand(arguments, msg)
+  } else if (primaryCommand == 'dracarys') {
+    dracarysCommand(arguments, msg)
   }
 }
 
@@ -45,6 +47,30 @@ function helpCommand(arguments, msg) {
   msg.channel.send(
     "Looks like your are looking for some help. I don't have anything for you yet!"
   )
+}
+
+function dracarysCommand(arguments, msg) {
+  msg.channel.send({
+    embed: {
+      color: 3447003,
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL,
+      },
+      fields: [
+        {
+          name: 'Drogon Spews His Flames!',
+          image:
+            'http://jeremyvarner.com/blog/wp-content/uploads/2015/06/Fire-breathing-Dragon-672x372.jpg',
+        },
+      ],
+      timestamp: new Date(),
+      footer: {
+        icon_url: client.user.avatarURL,
+        text: '© Example',
+      },
+    },
+  })
 }
 
 client.login(process.env.BOT_TOKEN)
