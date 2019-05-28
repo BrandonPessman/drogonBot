@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -40,6 +42,14 @@ function processCommand(msg) {
     helpCommand(arguments, msg)
   } else if (primaryCommand == 'dracarys') {
     dracarysCommand(arguments, msg)
+  } else if (primaryCommand == 'uptime') {
+    uptimeCommand(arguments, msg)
+  } else if (primaryCommand == 'info') {
+    infoCommand(arguments, msg)
+  } else if (primaryCommand == 'dog') {
+    dogCommand(arguments, msg)
+  } else if (primaryCommand == 'cat') {
+    catCommand(arguments, msg)
   }
 }
 
@@ -62,11 +72,19 @@ function helpCommand(arguments, msg) {
     .setTimestamp()
     .setURL('https://discord.js.org/#/docs/main/indev/class/RichEmbed')
     .addField('**Command:** !help', 'Here is a list of helpful commands.')
-    .addField('Random Commands', '!dracarys - Use with caution.\n')
+    .addField(
+      'Random Commands',
+      '!dracarys - Use with caution.\n!cat - Gives a random cat image\n!dog - Gives a random dog image'
+    )
+    .addField(
+      'Information Commands',
+      '!info - Basic info about this bot.\n!uptime - Displays the bot uptime.'
+    )
 
   msg.channel.send({ embed })
 }
 
+// Command for funny fire command
 function dracarysCommand(arguments, msg) {
   const embed = embedBuilder(
     'dracarys',
@@ -75,6 +93,54 @@ function dracarysCommand(arguments, msg) {
   )
 
   msg.channel.send({ embed })
+}
+
+// Command for getting BotInfo
+function infoCommand(arguments, msg) {
+  const embed = embedBuilder(
+    'info',
+    'Drogon was built as a learning project. It is an all-purpose bot, with a Game of Thrones Theme.',
+    ''
+  )
+
+  msg.channel.send({ embed })
+}
+
+// Command for Bot Uptime
+function uptimeCommand(arguments, msg) {
+  const embed = embedBuilder(
+    'uptime',
+    'Server Uptime: ' + process.uptime() + ' seconds',
+    ''
+  )
+
+  msg.channel.send({ embed })
+}
+
+// Command for Dog Picture
+function dogCommand(arguments, msg) {
+  var embed
+  axios.get('https://dog.ceo/api/breeds/image/random').then(response => {
+    embed = embedBuilder(
+      'dog',
+      'Here is a yummy looking dog!',
+      '' + response.data.message
+    )
+    msg.channel.send({ embed })
+  })
+}
+
+// Command for Cat Picture
+function catCommand(arguments, msg) {
+  axios.get('https://api.thecatapi.com/v1/images/search').then(response => {
+    console.log(response.data[0])
+    embed = embedBuilder(
+      'dog',
+      'Here is a yummy looking cat!',
+      '' + response.data[0].url
+    )
+    msg.channel.send({ embed })
+  })
 }
 
 client.login(process.env.BOT_TOKEN)

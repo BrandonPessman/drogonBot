@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BrandonPessman/drogonBot#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "discord.js": "^11.5.0",
     "dotenv": "^8.0.0"
   }
